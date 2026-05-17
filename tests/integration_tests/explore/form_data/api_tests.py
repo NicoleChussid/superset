@@ -66,6 +66,7 @@ def datasource() -> int:
 
 @pytest.fixture(autouse=True)
 def cache(chart_id, admin_id, datasource):
+    cache_manager.explore_form_data_cache.clear()
     entry: TemporaryExploreState = {
         "owner": admin_id,
         "datasource_id": datasource.id,
@@ -74,6 +75,8 @@ def cache(chart_id, admin_id, datasource):
         "form_data": INITIAL_FORM_DATA,
     }
     cache_manager.explore_form_data_cache.set(KEY, entry)
+    yield
+    cache_manager.explore_form_data_cache.clear()
 
 
 def test_post(test_client, login_as_admin, chart_id: int, datasource: SqlaTable):
