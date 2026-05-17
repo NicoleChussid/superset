@@ -16,6 +16,7 @@
 # specific language governing permissions and limitations
 # under the License.
 #
+# Security: CVE-2024-37891 (MEDIUM) - proxy auth header forwarded on cross-origin redirects
 # Security: CVE-2026-21441 - decompression bomb bypass on redirects
 urllib3>=2.6.3,<3.0.0
 # Security: CVE-2026-27199 - Windows device name handling in safe_join
